@@ -1,131 +1,3 @@
-//COUNTRY API  -- XMLHTTP
-/*
-var xhr = new XMLHttpRequest();
-
-xhr.open("GET","https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
-xhr.send();
-
-xhr.onload = function(){
-    if(xhr.status>=200 && xhr.status<300){
-        let data = JSON.parse(this.response);
-        //console.log(data);
-        for(let x of data){
-            console.log(`
-                Country name : ${x.name}
-                Country sub-region: ${x.subregion}
-                Country population :${x.population}
-            `)
-        }
-    }else{
-        console.log("Data not found");
-    }
-};
-*/
-
-//CHECKING IF TWO json objects are same even if in different order
-//USING LODASH -includes lodash.js in index.html also
-
-
-
-
-
-
-
-
-//////////////////
-
-
-
-
-
-
-
-
-//
-
-
-/*
-
-
-    //combine 2 array and sort them
-    var friends1 = [
-        "Mari",
-        "MaryJane",
-        "CaptianAmerica",
-        "Munnabai",
-        "Jeff",
-        "AAK chandran"
-        ];
-        var friends2 = [
-        "Gabbar",
-        "Rajinikanth",
-        "Mass",
-        "Spiderman",
-        "Jeff",
-        "ET"
-        ];
-        function dataHandling3(input1,input2){
-            input1= input1.concat(input2);
-            input1 = input1.sort()
-            return input1;
-        }
-       var friends =  dataHandling3(friends1,friends2);
-       console.log(friends);
-
-       console.log(`
-       
-       first item: ${friends[0]} 
-       Middle item: ${friends[Math.floor(friends.length/2)]}
-       last item: ${friends[friends.length-1]}
-       `)
-
-       //adding elements to end and beginning of array
-       friends.push("Sivani");
-       friends.unshift("Ash");
-       console.log(friends)
-
-       // adding Mr. to all names 
-       for(let x in friends){
-           friends[x] = "Mr."+friends[x];
-       }
-       console.log(friends)
-
-       //comcat all name with comma(,)
-       console.log(friends.join(","));
-
-       //retrurn list of names which ha 'a'
-       let arr=[];
-        for(let x of friends){
-            if(x.indexOf('a')!=-1 || x.indexOf('A')!=-1){
-                arr.push(x);
-            }
-        }
-        console.log(arr)
-
-        //Average length of friends name:
-        let len=0;
-        friends.forEach(x => len+=x.length);
-        let avg =parseInt( len/friends.length);
-        console.log(avg)
-
-
-*///
-
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -133,20 +5,27 @@ xhr.onload = function(){
 
 // window.localStorage.setItem("todolist","initianext-item");
 var todo=[];
-console.log(typeof(window.localStorage.getItem("todolist")));
+//console.log(typeof(window.localStorage.getItem("todolist")));
 
+
+//check if previous items in localStorage
  if(window.localStorage.getItem("todolist")!=null){
-    console.log(window.localStorage.getItem("todolist"));
+     console.log("has previous items")
+   // console.log(window.localStorage.getItem("todolist"));
     todo=window.localStorage.getItem("todolist").split("next-item");
     console.log(todo)
+ }else{
+    console.log("NO previous items")
  }
 
 
+ //add existing items from localStorage to list.
 if(todo.length>0){
        //making button display block
-       document.querySelector("#btn-clr").style.display="block"
+       document.querySelector("#btn-clr").style.display="block";
     for(x of todo){
-        if(x.trim()!="" && x!="initia"){
+        console.log(x);
+        if(x.trim()!=""){
             let list = document.querySelector("#list");
 
     let li = document.createElement("li");
@@ -173,13 +52,17 @@ if(todo.length>0){
 let additem = () => {
     let item = document.querySelector("#item").value;
 
+    //console.log(window.localStorage.getItem("todolist"))
    if(todo.length>0){
+       //console.log("adding second item");
     window.localStorage.setItem("todolist",window.localStorage.getItem("todolist")+item+"next-item");
    }else{
-       window.localStorage.setItem("todolist",item+"next-item")
+       window.localStorage.setItem("todolist",item+"next-item");
+       todo.push(item);
+       //console.log(window.localStorage.getItem("todolist"))
    }
-  
-    console.log(window.localStorage.getItem("todolist"));
+  //console.log("to%do",todo);
+    //console.log(window.localStorage.getItem("todolist"));
 
 
     let list = document.querySelector("#list");
@@ -216,19 +99,12 @@ let clearitem = () => {
     //Clearing local storage
 window.localStorage.removeItem("todolist");
 console.log(window.localStorage.getItem("todolist"));
+todo=[];
 document.querySelector("#list").innerHTML="";
 document.querySelector("#btn-clr").style.display="none"
 }
 
 
 ////////////////////////////////////////////////////////////
- function myfunc1(callback){ //callback) is passed as argument
-     setTimeout(function(){
-        console.log("I am first function")
-        callback(); //execute callback only after this function is executed
-     },2000) 
- }
- function myfunc2(){console.log("I am second function");}
 
- myfunc1(myfunc2); //myfunc2 is callback function
 
