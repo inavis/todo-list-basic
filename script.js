@@ -133,13 +133,18 @@ xhr.onload = function(){
 
 // window.localStorage.setItem("todolist","initianext-item");
 var todo=[];
-//console.log(typeof(window.localStorage.getItem("todolist")));
-console.log(window.localStorage.getItem("todolist"))
- 
-todo=window.localStorage.getItem("todolist").split("next-item");
-console.log(todo)
+console.log(typeof(window.localStorage.getItem("todolist")));
+
+ if(window.localStorage.getItem("todolist")!=null){
+    console.log(window.localStorage.getItem("todolist"));
+    todo=window.localStorage.getItem("todolist").split("next-item");
+    console.log(todo)
+ }
+
 
 if(todo.length>0){
+       //making button display block
+       document.querySelector("#btn-clr").style.display="block"
     for(x of todo){
         if(x.trim()!="" && x!="initia"){
             let list = document.querySelector("#list");
@@ -171,7 +176,7 @@ let additem = () => {
    if(todo.length>0){
     window.localStorage.setItem("todolist",window.localStorage.getItem("todolist")+item+"next-item");
    }else{
-       window.localStorage.setItem("todol)ist"+item+"next-item")
+       window.localStorage.setItem("todolist",item+"next-item")
    }
   
     console.log(window.localStorage.getItem("todolist"));
@@ -200,9 +205,30 @@ let additem = () => {
 
    
     document.querySelector("#item").value="";
+
+    //making button display block
+    document.querySelector("#btn-clr").style.display="block"
 }
 
 
-//Clearing local storage
-// window.localStorage.removeItem("todolist");
-// console.log(window.localStorage.getItem("todolist"))
+
+let clearitem = () => {
+    //Clearing local storage
+window.localStorage.removeItem("todolist");
+console.log(window.localStorage.getItem("todolist"));
+document.querySelector("#list").innerHTML="";
+document.querySelector("#btn-clr").style.display="none"
+}
+
+
+////////////////////////////////////////////////////////////
+ function myfunc1(callback){ //callback) is passed as argument
+     setTimeout(function(){
+        console.log("I am first function")
+        callback(); //execute callback only after this function is executed
+     },2000) 
+ }
+ function myfunc2(){console.log("I am second function");}
+
+ myfunc1(myfunc2); //myfunc2 is callback function
+

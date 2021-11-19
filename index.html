@@ -41,6 +41,11 @@
         background-color: rgba(248, 204, 7, 0.678);
         border: none;
       }
+      #btn-clr{
+        background-color: rgba(215, 142, 233, 0.678);
+        border: none;
+        float: right;
+      }
       /*To have linear gradient applied to whole body without repeating*/
         html {
             min-height: 100%;
@@ -74,17 +79,25 @@
   </head>
 
   <body >
-      <h1 class="text-white ml-5 mt-5 mb-3">to do list</h1>
+      <div class="container">
+        <div class="row">
+          <h1 class="text-white col-sm-5 mt-5 mb-3">to do list</h1>
+          <br>
+          <button onclick="clearitem()" class="ml-5 mb-3 mt-5" id="btn-clr" style="display:none;">create new list</button>
+        </div>
+        
+      </div>
+     
       <hr>
       <input type="text" placeholder="Enter text here" class="ml-5 mb-3" id="item"/>
       <br>
       <button onclick="additem()" class="ml-5 mb-3" id="btn">add to list</button>
-  
       <div>
         <ol id="list">
   
         </ol>
       </div>
+     
     
   
 
